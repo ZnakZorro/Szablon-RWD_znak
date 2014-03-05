@@ -10,7 +10,7 @@
 <title>RWD_znak_3.X</title>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-<style>
+<style id="css_dopisane">
 
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -181,6 +181,8 @@ function zapal(){
 	else {
 		$('.color-edit-bg').toggle();
 		$('.color-edit-tx').toggle();
+		$('#klawisz_zapisz').hide();
+		$('#kody').hide();
 	}
 }
 
@@ -193,6 +195,7 @@ function kolory(co,kto){
 
 function zapisz(){
 	$('#kody').empty();
+	var all_css='';
 	$('.control-edit').each(function(ix,el){
 		var bg  = $(this).css('background');
 		var tx  = $(this).css('color');
@@ -206,9 +209,20 @@ function zapisz(){
 			var m_tx = tx.match(/rgb.?\((.*?)\)/);
 			if (m_tx) tx = m_tx[0];
 		var css = selektor+'{background:'+bg+'; color:'+tx+'}'+"\n";
+		all_css +=css;
 		$('#kody').append(css);
 		$('#kody').show();
+		localStorage.setItem('___RWD3___',JSON.stringify({'extra_css':all_css}));
 	});
+}
+
+
+var ls_css = localStorage.getItem('___RWD3___');
+console.log(ls_css);
+if (ls_css){
+	var lokalSt = JSON.parse(ls_css);
+	console.log(lokalSt.extra_css);
+	$('#css_dopisane').text(lokalSt.extra_css);
 }
 </script>
 
