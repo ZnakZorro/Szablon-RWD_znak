@@ -19,34 +19,10 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script>
-function kolory(co,kto){
 
-var v = $(co).val();
-var k= $(co).parent();
-k.css('background',v);
-console.log(k,v);
-return;
-var klasa = co.parentNode.className;
-$('.'+klasa).css('background',co);
-$('.footer').css('background',co);
-
-	kto = kto || 'body';
-	console.log(klasa);
-	
-	//document.body.style.background=co;
-	
-	switch(kto){
-		case 'body': 	document.body.style.background=co;	  break;
-		case 'content': document.getElementById('content').style.background=co;	  break;
-		case 'left':    document.getElementById('left').style.background=co;	  break;
-		case 'right':   document.getElementById('right').style.background=co;	  break;
-		default: document.body.style.background=co;
-		}
-	
-}
 </script>
 </head>
-<body>
+<body class="body control-edit">
 
 <a class="sr-only" href="#content">Skip to main content</a>
 
@@ -56,7 +32,7 @@ $('.footer').css('background',co);
         <div class="navbar-header">
         
             <nav class="navbar navbar-default" role="navigation">
-              <div class="container control-edit">
+              <div class="container-navi container control-edit">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -116,15 +92,15 @@ $('.footer').css('background',co);
 
 
 
-<div class="container control-edit">
+<div class="container-content container control-edit">
   <div class="row">
     
-    <div class="col-sm-3 well control-edit" id="left">
+    <div class="left col-sm-3 well control-edit" id="left">
 
       <h3>lewa strona</h3>
     </div>
     
-    <div class="col-sm-6 well control-edit" id="content"> <!-- content -->
+    <div class="content col-sm-6 well control-edit" id="content"> <!-- content -->
 	
     	<article>
     		<header>
@@ -137,17 +113,12 @@ $('.footer').css('background',co);
     			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
     			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
     			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
+  
     		</section>
     	</article>
     </div><!-- content -->
     
-    <div class="col-sm-3 well control-edit" id="right">
+    <div class="right col-sm-3 well control-edit" id="right">
       <h3>prawa strona</h3>
     </div>
     
@@ -155,29 +126,19 @@ $('.footer').css('background',co);
   </div> <!-- row -->
 </div> <!-- contaner -->
 
+<textarea id="kody" style="width:100%; height:15em; margin:1em 0; padding:0.5em; display:none;"></textarea>
 
-
-<footer class="footer color-edit">
+<footer class="footer control-edit">
 
 	<div class="container">
 	  <div class="row">
 		
 		<a class="sr-only" name="konfiguracja">konfiguracja</a>
-		<div class="col-sm-2">
-			<p>body</p>
-			<input type="color" name="favcolor" id="favcolor" value="" onChange="kolory(this.value)"  class="form-control" />
-		</div>
-		<div class="col-sm-2">
-			<p>left</p><input type="color" value="" onChange="kolory(this.value,'left')"  class="form-control" />
-		</div>
-		<div class="col-sm-2">
-			<p>content</p><input type="color" value="" onChange="kolory(this.value,'content')"  class="form-control" />
-		</div>
-		<div class="col-sm-2">
-			<p>right</p><input type="color" value="" onChange="kolory(this.value,'right')"  class="form-control" />
-		</div>
-		<div class="col-sm-2">
-		</div>
+		<div class="col-sm-6">
+			<button class="btn btn-info" onClick="zapal()">Kolory</button>
+			<button class="btn btn-success" onClick="zapisz()">Zapisz</button>
+		<div>
+
 		
 		
 	  </div> <!-- row -->
@@ -186,7 +147,43 @@ $('.footer').css('background',co);
 
 
 <script>
-$('.control-edit').prepend('<input type="color" value="" onChange="kolory(this)"  class="color-edit" />')
+function zapal(){
+	var ifis = $('.color-edit').length;
+	if (ifis==0) {
+		$('.control-edit').prepend('<input type="color" value="" onChange="kolory(this,\'color\')"  class="color-edit-tx" />');		
+		$('.control-edit').prepend('<input type="color" value="" onChange="kolory(this,\'background\')"  class="color-edit-bg" />');
+	}
+	else {
+		$('.color-edit-bg').toggle();
+		$('.color-edit-fg').toggle();
+	}
+}
+
+function kolory(co,kto){
+	var v = $(co).val();
+	var k= $(co).parent();
+	k.css(kto,v);
+}
+
+function zapisz(){
+	$('#kody').empty();
+	$('.control-edit').each(function(ix,el){
+		var bg  = $(this).css('background');
+		var tx  = $(this).css('color');
+		var tag = $(this).prop("tagName");
+		var klasy = $(this).prop("className");
+		var arr = klasy.split(" ");
+		var klasa = arr[0];
+		var selektor=tag+'.'+klasa;
+			var m_bg = bg.match(/rgb.?\((.*?)\)/);
+			if (m_bg) bg = m_bg[0];
+			var m_tx = tx.match(/rgb.?\((.*?)\)/);
+			if (m_tx) tx = m_tx[0];
+		var css = selektor+'{background:'+bg+'; color:'+tx+'}'+"\n";
+		$('#kody').append(css);
+		$('#kody').show();
+	});
+}
 </script>
 
 
