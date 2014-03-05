@@ -19,6 +19,23 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script>
+function los(il){
+	return Math.round((Math.random()*(il/2))+(il/2));
+}
+function jakisTekst(ile){
+	var spolgloski = ['ą','b','c','ć','d','ę','f','g','h','j','k','l','ł','m','n','ń','ó','p','r','s','ś','t','w','y','z','ź','ż'];
+	var samogloski = ['a','e','i','o','u'];
+	var ilesp = spolgloski.length;
+	var ilesa = samogloski.length;
+	var text='';
+	for (var i = 0; i<ile; i++){
+		text +=spolgloski[Math.floor(Math.random()*ilesp)]; 
+		if (i % los(4) ==0) text +=samogloski[Math.floor(Math.random()*ilesa)]; 
+		if (i % los(6) ==0) text +=' '; 
+		if (i % los(40) ==0) text +='. '+samogloski[Math.floor(Math.random()*ilesa)].toUpperCase(); 
+	}
+	return(text);
+}
 
 </script>
 </head>
@@ -32,7 +49,7 @@
         <div class="navbar-header">
         
             <nav class="navbar navbar-default" role="navigation">
-              <div class="container-navi container control-edit">
+              <div class="container-navi control-edit container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -92,41 +109,42 @@
 
 
 
-<div class="container-content container control-edit">
+<div class="container-content control-edit container">
   <div class="row">
     
-    <div class="left col-sm-3 well control-edit" id="left">
+    <div class="left control-edit col-sm-3 well" id="left">
 
       <h3>lewa strona</h3>
+	  <p><script>document.write(jakisTekst(300));</script></p>
     </div>
     
-    <div class="content col-sm-6 well control-edit" id="content"> <!-- content -->
+    <div class="content control-edit col-sm-6" id="content"> <!-- content -->
 	
     	<article>
     		<header>
     			<h1>Header h1</h1>
     			<p>Header text.</p>
+				<p><script>document.write(jakisTekst(100));</script></p>
     		</header>
     		<section>
     			<h2>article section h2</h2>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
+				<p><script>document.write(jakisTekst(200));</script></p>
     			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
   
     		</section>
     	</article>
     </div><!-- content -->
     
-    <div class="right col-sm-3 well control-edit" id="right">
+    <div class="right control-edit col-sm-3 well" id="right">
       <h3>prawa strona</h3>
+	  <p><script>document.write(jakisTekst(300));</script></p>
     </div>
     
-    
+		<textarea id="kody" style="width:100%; height:15em; margin:1em 0; padding:0.5em; display:none;"></textarea>   
   </div> <!-- row -->
 </div> <!-- contaner -->
 
-<textarea id="kody" style="width:100%; height:15em; margin:1em 0; padding:0.5em; display:none;"></textarea>
+
 
 <footer class="footer control-edit">
 
@@ -135,9 +153,15 @@
 		
 		<a class="sr-only" name="konfiguracja">konfiguracja</a>
 		<div class="col-sm-6">
-			<button class="btn btn-info" onClick="zapal()">Kolory</button>
-			<button class="btn btn-success" onClick="zapisz()">Zapisz</button>
-		<div>
+			<button class="btn btn-primary"    onClick="zapal()">Kolory</button>
+			<button class="btn btn-success" onClick="zapisz()" style="display:none;" id="klawisz_zapisz">Zapisz</button>
+		</div>
+		<div class="col-sm-6">
+		</div>
+		<div class="col-sm-12">
+		<p><script>document.write(jakisTekst(300));</script></p>
+		</div>
+		
 
 		
 		
@@ -148,14 +172,15 @@
 
 <script>
 function zapal(){
-	var ifis = $('.color-edit').length;
-	if (ifis==0) {
-		$('.control-edit').prepend('<input type="color" value="" onChange="kolory(this,\'color\')"  class="color-edit-tx" />');		
-		$('.control-edit').prepend('<input type="color" value="" onChange="kolory(this,\'background\')"  class="color-edit-bg" />');
+	var ifis = $('.color-edit-tx').length;
+	//console.log(typeof(ifis), ifis);
+	if (ifis=='0') {
+		$('.control-edit').prepend('<input type="color" value="" onChange="kolory(this,\'color\')"       class="color-edit-tx" title="Text color" />');		
+		$('.control-edit').prepend('<input type="color" value="" onChange="kolory(this,\'background\')"  class="color-edit-bg" title="Background" />');
 	}
 	else {
 		$('.color-edit-bg').toggle();
-		$('.color-edit-fg').toggle();
+		$('.color-edit-tx').toggle();
 	}
 }
 
@@ -163,6 +188,7 @@ function kolory(co,kto){
 	var v = $(co).val();
 	var k= $(co).parent();
 	k.css(kto,v);
+	$('#klawisz_zapisz').show();
 }
 
 function zapisz(){
