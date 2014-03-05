@@ -19,8 +19,30 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script>
-function kolory(co){
-	console.log(co);
+function kolory(co,kto){
+
+var v = $(co).val();
+var k= $(co).parent();
+k.css('background',v);
+console.log(k,v);
+return;
+var klasa = co.parentNode.className;
+$('.'+klasa).css('background',co);
+$('.footer').css('background',co);
+
+	kto = kto || 'body';
+	console.log(klasa);
+	
+	//document.body.style.background=co;
+	
+	switch(kto){
+		case 'body': 	document.body.style.background=co;	  break;
+		case 'content': document.getElementById('content').style.background=co;	  break;
+		case 'left':    document.getElementById('left').style.background=co;	  break;
+		case 'right':   document.getElementById('right').style.background=co;	  break;
+		default: document.body.style.background=co;
+		}
+	
 }
 </script>
 </head>
@@ -34,7 +56,7 @@ function kolory(co){
         <div class="navbar-header">
         
             <nav class="navbar navbar-default" role="navigation">
-              <div class="container">
+              <div class="container control-edit">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -94,14 +116,16 @@ function kolory(co){
 
 
 
-<div class="container">
+<div class="container control-edit">
   <div class="row">
     
-    <div class="col-sm-3 well">
+    <div class="col-sm-3 well control-edit" id="left">
+
       <h3>lewa strona</h3>
     </div>
     
-    <div class="col-sm-6 well"> <!-- content -->
+    <div class="col-sm-6 well control-edit" id="content"> <!-- content -->
+	
     	<article>
     		<header>
     			<h1>Header h1</h1>
@@ -123,7 +147,7 @@ function kolory(co){
     	</article>
     </div><!-- content -->
     
-    <div class="col-sm-3 well">
+    <div class="col-sm-3 well control-edit" id="right">
       <h3>prawa strona</h3>
     </div>
     
@@ -133,14 +157,26 @@ function kolory(co){
 
 
 
-<footer>
+<footer class="footer color-edit">
+
 	<div class="container">
 	  <div class="row">
 		
+		<a class="sr-only" name="konfiguracja">konfiguracja</a>
 		<div class="col-sm-2">
-			<a class="sr-only" name="konfiguracja">konfiguracja</a>
-			<input type="color" name="favcolor" id="favcolor" value="#336699" onChange="kolory(this.value)"  class="form-control" />
-			<span><input  id="hexcolor" value="#336699" class="form-control" /></span>
+			<p>body</p>
+			<input type="color" name="favcolor" id="favcolor" value="" onChange="kolory(this.value)"  class="form-control" />
+		</div>
+		<div class="col-sm-2">
+			<p>left</p><input type="color" value="" onChange="kolory(this.value,'left')"  class="form-control" />
+		</div>
+		<div class="col-sm-2">
+			<p>content</p><input type="color" value="" onChange="kolory(this.value,'content')"  class="form-control" />
+		</div>
+		<div class="col-sm-2">
+			<p>right</p><input type="color" value="" onChange="kolory(this.value,'right')"  class="form-control" />
+		</div>
+		<div class="col-sm-2">
 		</div>
 		
 		
@@ -149,8 +185,9 @@ function kolory(co){
 <footer>
 
 
-
-							
+<script>
+$('.control-edit').prepend('<input type="color" value="" onChange="kolory(this)"  class="color-edit" />')
+</script>
 
 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
