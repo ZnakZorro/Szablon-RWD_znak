@@ -10,6 +10,7 @@
 	<title>RWD_znak_3.X</title>
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="_/rwd.css">
 	<style id="css_dopisane">
 
 	</style>
@@ -35,10 +36,11 @@
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
   <div class="container">
     <div class="row">
-        <div class="navbar-header">
+        <div class="navbar-header" style="width:100%;">
         
-            <nav class="navbar navbar-default" role="navigation">
+            <nav class="navbar navbar-inverse" role="navigation">
               <div class="container-navi control-edit container">
+			
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -89,6 +91,7 @@
                     </li>
                   </ul>
                 </div><!-- /.navbar-collapse -->
+			
               </div><!-- /.container-fluid -->
             </nav>
         </div> <!-- navbar_header -->
@@ -96,14 +99,79 @@
   </div> <!-- container -->
 </header>
 
+<!-- klawisze usun w dol -->
+	<div class="container">
+	  <div class="row klawisze" >
+	  
+		<a class="sr-only" name="konfiguracja">konfiguracja</a>
+		<div class="col-sm-6" style="z-index:3;">
+			<div class="btn-group pull-center">
+			<button class="btn btn-primary"    onClick="zapal()">Kolory</button>
+			<button class="btn btn-warning"    onClick="kasuj()" style="display:none;" id="klawisz_kasuj">x</button>
+			<button class="btn btn-success"    onClick="zapisz()"   style="display:none;" id="klawisz_zapisz">Zapisz</button>
+			<button class="btn btn-warning"    onClick="rysujGrida()" style="display:inline;" id="klawisz_grida">grid</button>
+			<button class="btn btn-success"    onClick="layout_fluid()" style="display:inline;" id="klawisz_fluid">fluid</button>
+			</div>
+		</div>
+		
+		<div class="col-sm-6" style="z-index:4;">
+			<!-- Single button -->
+			<div class="btn-group pull-right">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+				Font <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+				<li><a href="javascript:void(0);" onClick="wybierzFont('Arial')">Arial</a></li>
+				<li><a href="javascript:void(0);" onClick="wybierzFont('Verdana')">Verdana</a></li>
+				<li><a href="javascript:void(0);" onClick="wybierzFont('Georgia')">Georgia</a></li>
+				 <li class="divider">Rozmiar:</li>
+				<li><a href="javascript:void(0);" onClick="wybierzFont(14)">14px</a></li>
+				<li><a href="javascript:void(0);" onClick="wybierzFont(15)">15px</a></li>
+				<li><a href="javascript:void(0);" onClick="wybierzFont(16)">16px</a></li>
+				<li><a href="javascript:void(0);" onClick="wybierzFont(17)">17px</a></li>
+				<li><a href="javascript:void(0);" onClick="wybierzFont(18)">18px</a></li>
+				<li><a href="javascript:void(0);" onClick="wybierzFont(20)">20px</a></li>
+			  </ul>
+			</div>		
+		</div>
+		<!--div class="col-sm-6" style="z-index:3;">
+			<div class="btn-group pull-right">
+			<button class="btn btn-success"    onClick="layout_grid(this)" >2-7-3</button>
+			<button class="btn btn-success"    onClick="layout_grid(this)" >3-6-3</button>
+			<button class="btn btn-success"    onClick="layout_grid(this)" >3-7-2</button>
+			<button class="btn btn-success"    onClick="layout_grid(this)" >2-8-2</button>
+			<button class="btn btn-success"    onClick="layout_grid(this)" >3-9-0</button>
+			<button class="btn btn-success"    onClick="layout_grid(this)" >0-9-3</button>
+			<button class="btn btn-success"    onClick="layout_grid(this)" >0-8-4</button>
+			<button class="btn btn-success"    onClick="layout_grid(this)" >4-8-0</button>			
+			</div>
+		</div-->	
+
+	  </div> <!-- row -->
+	  
+		<div class="row klawisze" style="margin:15px 0;">
+			<div class="col-sm-4" style="z-index:3;">
+				<input type="range" id="suwak-cols-left"  min="0" max="6" value="3" onChange="suwaki()">
+			</div>
+			<div class="col-sm-4 col-sm-offset-4" style="z-index:3;">
+				<input type="range" id="suwak-cols-right" min="0" max="6" value="3" onChange="suwaki()">
+			</div>
+		</div>
+		  
+	  
+	</div> <!-- contaner -->
+<!-- klawisze usun w gorę -->
 
 
-<div class="container-content control-edit container">
+
+
+
+<div class="container-content control-edit container" id="main_content">
   <div class="row">
     
     <div class="left control-edit col-sm-3 well" id="left">
 
-      <h3>lewa strona</h3>
+      <h3>Lewa strona</h3>
 	  <div class="losowyTekst" value="2"></div>
     </div>
     
@@ -111,21 +179,18 @@
 	
     	<article>
     		<header>
-    			<h1>Header h1</h1>
-    			<p>Header text.</p>
+    			<h1>Nagłówek w h1</h1>
 				<div class="losowyTekst" value="1"></div>
     		</header>
     		<section>
-    			<h2>article section h2</h2>
-				<div class="losowyTekst" value="2"></div>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-  
+    			<h2>Artykuł w sekcji h2</h2>
+				<div class="losowyTekst" value="3"></div> 
     		</section>
     	</article>
     </div><!-- content -->
     
     <div class="right control-edit col-sm-3 well" id="right">
-      <h3>prawa strona</h3>
+      <h3>Prawa strona</h3>
 	  <div class="losowyTekst" value="2"></div>
     </div>
     
@@ -136,24 +201,9 @@
 
 
 <footer class="footer control-edit">
-
 	<div class="container">
 	  <div class="row">
-		
-		<a class="sr-only" name="konfiguracja">konfiguracja</a>
-		<div class="col-sm-6">
-			<button class="btn btn-primary"    onClick="zapal()">Kolory</button>
-			<button class="btn btn-primary"    onClick="kasuj()" style="display:none;" id="klawisz_kasuj">x</button>
-			<button class="btn btn-success"    onClick="zapisz()"   style="display:none;" id="klawisz_zapisz">Zapisz</button>
-		</div>
-		<div class="col-sm-6"  value="1">
-		</div>
-		<div class="col-sm-12 losowyTekst"  value="1">
-		</div>
-		
-
-		
-		
+		<div class="col-sm-12 losowyTekst well"  value="2"></div>
 	  </div> <!-- row -->
 	</div> <!-- contaner -->
 <footer>
@@ -161,6 +211,7 @@
 
 <script>
 losowyTekst.ini();
+//rysujGrida();
 </script>
 
 

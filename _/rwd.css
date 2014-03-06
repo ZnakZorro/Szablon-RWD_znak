@@ -1,0 +1,8 @@
+#grider {z-index:1; opacity:0.33; position:relative;}
+.grid {border:1px solid gray; position: absolute; height:500px;}
+.grid-0 {background:#bbf;}
+.grid-1 {background:#ffb;}
+.col-sm-0 {display:none;}
+.navbar {margin-bottom: 5px;}
+.klawisze {margin-bottom:10px;}
+.pull-center {margin:0 auto;}
