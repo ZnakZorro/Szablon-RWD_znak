@@ -1,41 +1,30 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="author" content="RWD znak">
-<title>RWD_znak_3.X</title>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-<style id="css_dopisane">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="RWD znak">
+	<title>RWD_znak_3.X</title>
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	<style id="css_dopisane">
 
-</style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script src="_/kolory.js"></script>
+<script src="_/random_text_class.js"></script>
+<script src="_/holder.js"></script>
+
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script>
-function los(il){
-	return Math.round((Math.random()*(il/2))+(il/2));
-}
-function jakisTekst(ile){
-	var spolgloski = ['ą','b','c','ć','d','ę','f','g','h','j','k','l','ł','m','n','ń','ó','p','r','s','ś','t','w','y','z','ź','ż'];
-	var samogloski = ['a','e','i','o','u'];
-	var ilesp = spolgloski.length;
-	var ilesa = samogloski.length;
-	var text='';
-	for (var i = 0; i<ile; i++){
-		text +=spolgloski[Math.floor(Math.random()*ilesp)]; 
-		if (i % los(4) ==0) text +=samogloski[Math.floor(Math.random()*ilesa)]; 
-		if (i % los(6) ==0) text +=' '; 
-		if (i % los(40) ==0) text +='. '+samogloski[Math.floor(Math.random()*ilesa)].toUpperCase(); 
-	}
-	return(text);
-}
 
 </script>
 </head>
@@ -115,7 +104,7 @@ function jakisTekst(ile){
     <div class="left control-edit col-sm-3 well" id="left">
 
       <h3>lewa strona</h3>
-	  <p><script>document.write(jakisTekst(300));</script></p>
+	  <div class="losowyTekst" value="2"></div>
     </div>
     
     <div class="content control-edit col-sm-6" id="content"> <!-- content -->
@@ -124,11 +113,11 @@ function jakisTekst(ile){
     		<header>
     			<h1>Header h1</h1>
     			<p>Header text.</p>
-				<p><script>document.write(jakisTekst(100));</script></p>
+				<div class="losowyTekst" value="1"></div>
     		</header>
     		<section>
     			<h2>article section h2</h2>
-				<p><script>document.write(jakisTekst(200));</script></p>
+				<div class="losowyTekst" value="2"></div>
     			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
   
     		</section>
@@ -137,7 +126,7 @@ function jakisTekst(ile){
     
     <div class="right control-edit col-sm-3 well" id="right">
       <h3>prawa strona</h3>
-	  <p><script>document.write(jakisTekst(300));</script></p>
+	  <div class="losowyTekst" value="2"></div>
     </div>
     
 		<textarea id="kody" style="width:100%; height:15em; margin:1em 0; padding:0.5em; display:none;"></textarea>   
@@ -154,12 +143,12 @@ function jakisTekst(ile){
 		<a class="sr-only" name="konfiguracja">konfiguracja</a>
 		<div class="col-sm-6">
 			<button class="btn btn-primary"    onClick="zapal()">Kolory</button>
-			<button class="btn btn-success" onClick="zapisz()" style="display:none;" id="klawisz_zapisz">Zapisz</button>
+			<button class="btn btn-primary"    onClick="kasuj()" style="display:none;" id="klawisz_kasuj">x</button>
+			<button class="btn btn-success"    onClick="zapisz()"   style="display:none;" id="klawisz_zapisz">Zapisz</button>
 		</div>
-		<div class="col-sm-6">
+		<div class="col-sm-6"  value="1">
 		</div>
-		<div class="col-sm-12">
-		<p><script>document.write(jakisTekst(300));</script></p>
+		<div class="col-sm-12 losowyTekst"  value="1">
 		</div>
 		
 
@@ -171,59 +160,7 @@ function jakisTekst(ile){
 
 
 <script>
-function zapal(){
-	var ifis = $('.color-edit-tx').length;
-	//console.log(typeof(ifis), ifis);
-	if (ifis=='0') {
-		$('.control-edit').prepend('<input type="color" value="" onChange="kolory(this,\'color\')"       class="color-edit-tx" title="Text color" />');		
-		$('.control-edit').prepend('<input type="color" value="" onChange="kolory(this,\'background\')"  class="color-edit-bg" title="Background" />');
-	}
-	else {
-		$('.color-edit-bg').toggle();
-		$('.color-edit-tx').toggle();
-		$('#klawisz_zapisz').hide();
-		$('#kody').hide();
-	}
-}
-
-function kolory(co,kto){
-	var v = $(co).val();
-	var k= $(co).parent();
-	k.css(kto,v);
-	$('#klawisz_zapisz').show();
-}
-
-function zapisz(){
-	$('#kody').empty();
-	var all_css='';
-	$('.control-edit').each(function(ix,el){
-		var bg  = $(this).css('background');
-		var tx  = $(this).css('color');
-		var tag = $(this).prop("tagName");
-		var klasy = $(this).prop("className");
-		var arr = klasy.split(" ");
-		var klasa = arr[0];
-		var selektor=tag+'.'+klasa;
-			var m_bg = bg.match(/rgb.?\((.*?)\)/);
-			if (m_bg) bg = m_bg[0];
-			var m_tx = tx.match(/rgb.?\((.*?)\)/);
-			if (m_tx) tx = m_tx[0];
-		var css = selektor+'{background:'+bg+'; color:'+tx+'}'+"\n";
-		all_css +=css;
-		$('#kody').append(css);
-		$('#kody').show();
-		localStorage.setItem('___RWD3___',JSON.stringify({'extra_css':all_css}));
-	});
-}
-
-
-var ls_css = localStorage.getItem('___RWD3___');
-console.log(ls_css);
-if (ls_css){
-	var lokalSt = JSON.parse(ls_css);
-	console.log(lokalSt.extra_css);
-	$('#css_dopisane').text(lokalSt.extra_css);
-}
+losowyTekst.ini();
 </script>
 
 
