@@ -4,5 +4,33 @@
 .grid-1 {background:#ffb;}
 .col-sm-0 {display:none;}
 .navbar {margin-bottom: 5px;}
-.klawisze {margin-bottom:10px;}
 .pull-center {margin:0 auto;}
+.klawisze { margin:15px 0px;}
+.klawisze input[type="range"] {display:inline; max-width:80%; vertical-align: bottom; margin:0 3%;}
+.klawisze input[type="text"] {display:inline; max-width:10%; text-align:center;}
+
+/*tablety i mniej*/
+@media (max-width: 991px){
+	.klawisze { margin:5px 0px;}
+	div.klawisze > div { margin-bottom:15px;}
+}
+
+/*tablety i powyzej*/
+@media (min-width: 992px){
+}
+
+
+@media (min-width: 1440px){
+.container {width: 1370px;}
+}
+
+@media (min-width: 1600px){
+.container {width: 1470px;}
+body {font-size:16px;}
+}
+
+@media (min-width: 1920px){
+.container {width: 1870px;}
+body {background:#f8f8f8;font-size:20px;}
+}
+

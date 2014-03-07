@@ -104,7 +104,7 @@
 	  <div class="row klawisze" >
 	  
 		<a class="sr-only" name="konfiguracja">konfiguracja</a>
-		<div class="col-sm-6" style="z-index:3;">
+		<div class="col-md-6" style="z-index:3;">
 			<div class="btn-group pull-center">
 			<button class="btn btn-primary"    onClick="zapal()">Kolory</button>
 			<button class="btn btn-warning"    onClick="kasuj()" style="display:none;" id="klawisz_kasuj">x</button>
@@ -114,7 +114,7 @@
 			</div>
 		</div>
 		
-		<div class="col-sm-6" style="z-index:4;">
+		<div class="col-md-6" style="z-index:4;">
 			<!-- Single button -->
 			<div class="btn-group pull-right">
 			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -134,7 +134,7 @@
 			  </ul>
 			</div>		
 		</div>
-		<!--div class="col-sm-6" style="z-index:3;">
+		<!--div class="col-md-6" style="z-index:3;">
 			<div class="btn-group pull-right">
 			<button class="btn btn-success"    onClick="layout_grid(this)" >2-7-3</button>
 			<button class="btn btn-success"    onClick="layout_grid(this)" >3-6-3</button>
@@ -149,12 +149,18 @@
 
 	  </div> <!-- row -->
 	  
-		<div class="row klawisze" style="margin:15px 0;">
-			<div class="col-sm-4" style="z-index:3;">
-				<input type="range" id="suwak-cols-left"  min="0" max="6" value="3" onChange="suwaki()">
+		<div class="row klawisze">
+			<div class="col-md-4" style="z-index:3;">
+				<input type="text"  id="text-cols-left" value="3" title="Lewa kolumna" readonly="true" >
+				<input type="range" id="suwak-cols-left"  min="0" max="6" value="3" onChange="suwaki_RWD()" title="Lewa kolumna">
 			</div>
-			<div class="col-sm-4 col-sm-offset-4" style="z-index:3;">
-				<input type="range" id="suwak-cols-right" min="0" max="6" value="3" onChange="suwaki()">
+			<div class="col-md-4" style="z-index:3;">
+				<input style="max-width:30%;" type="text"  id="text-cols-type" value="col-md" title="Typ kolumny" readonly="true" >
+				<input style="max-width:60%;" type="range" id="suwak-cols-type"  min="0" max="3" value="2" onChange="suwaki_typ_kolumny()" title="Typ kolumny">
+			</div>			
+			<div class="col-md-4" style="z-index:3;">
+				<input type="range" id="suwak-cols-right" min="0" max="6" value="3" onChange="suwaki_RWD()" title="Prawa kolumna">
+				<input type="text"  id="text-cols-right" value="3" title="Prawa kolumna" readonly="true" >
 			</div>
 		</div>
 		  
@@ -169,13 +175,13 @@
 <div class="container-content control-edit container" id="main_content">
   <div class="row">
     
-    <div class="left control-edit col-sm-3 well" id="left">
+    <div class="left control-edit col-md-3 well" id="left">
 
       <h3>Lewa strona</h3>
 	  <div class="losowyTekst" value="2"></div>
     </div>
     
-    <div class="content control-edit col-sm-6" id="content"> <!-- content -->
+    <div class="content control-edit col-md-6" id="content"> <!-- content -->
 	
     	<article>
     		<header>
@@ -189,7 +195,7 @@
     	</article>
     </div><!-- content -->
     
-    <div class="right control-edit col-sm-3 well" id="right">
+    <div class="right control-edit col-md-3 well" id="right">
       <h3>Prawa strona</h3>
 	  <div class="losowyTekst" value="2"></div>
     </div>
@@ -202,9 +208,12 @@
 
 <footer class="footer control-edit">
 	<div class="container">
-	  <div class="row">
-		<div class="col-sm-12 losowyTekst well"  value="2"></div>
-	  </div> <!-- row -->
+		<div class="row">
+			<div class="col-md-12 well">
+				<h3>Footer w H3</h3>
+				<div class="losowyTekst" value="2"></div>
+			</div>
+		</div> <!-- row -->
 	</div> <!-- contaner -->
 <footer>
 

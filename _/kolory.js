@@ -87,16 +87,16 @@ function layout_fluid(){
 function layout_grid(patern){
 	//var patern = $(ten).text();
 	var arr = patern.split('-');
-		var klasa =''; for (var i=0; i<13; i++) {if ($('#left').hasClass('col-sm-'+i)) {klasa='col-sm-'+i; break}};
-		$('#left').removeClass(klasa).addClass('col-sm-'+arr[0]);
-		var klasa =''; for (var i=0; i<13; i++) {if ($('#content').hasClass('col-sm-'+i)) {klasa='col-sm-'+i; break}};
-		$('#content').removeClass(klasa).addClass('col-sm-'+arr[1]);
-		var klasa =''; for (var i=0; i<13; i++) {if ($('#right').hasClass('col-sm-'+i)) {klasa='col-sm-'+i; break}};
-		$('#right').removeClass(klasa).addClass('col-sm-'+arr[2]);
+		var klasa =''; for (var i=0; i<13; i++) {if ($('#left').hasClass('col-md-'+i)) {klasa='col-md-'+i; break}};
+		$('#left').removeClass(klasa).addClass('col-md-'+arr[0]);
+		var klasa =''; for (var i=0; i<13; i++) {if ($('#content').hasClass('col-md-'+i)) {klasa='col-md-'+i; break}};
+		$('#content').removeClass(klasa).addClass('col-md-'+arr[1]);
+		var klasa =''; for (var i=0; i<13; i++) {if ($('#right').hasClass('col-md-'+i)) {klasa='col-md-'+i; break}};
+		$('#right').removeClass(klasa).addClass('col-md-'+arr[2]);
 	console.log(klasa);
 	var className = $('#left').attr('class').split(' ');//.join('.');
 	
-	//console.log($("div.row > div[class*='col-sm-3']"));
+	//console.log($("div.row > div[class*='col-md-3']"));
 	//console.log($("div.row > div[class*='col']"));
 	//$("*[class^='fade']")
 	//$("*[class^='col-']").each(function(){
@@ -106,13 +106,50 @@ function layout_grid(patern){
 	//});
 }
 
-function suwaki() {
+var aktualna_kolumna = 'col-md';
+
+function suwaki_typ_kolumny(){
+	var typy = ['col-xs','col-sm','col-md','col-lg'];
+	var wybrana_kolumna = typy[$('#suwak-cols-type').val()];
+	$('#text-cols-type').val(wybrana_kolumna);
+	// left content right -> tylko to
+	
+	/*
+	var klasy = $("#left").attr('class');
+	console.log(klasy);
+	klasy = klasy.replace(aktualna_kolumna,wybrana_kolumna)
+	console.log(klasy);
+	$("#left").attr('class',klasy);
+*/
+	var klasy = $("#left").attr('class').replace(aktualna_kolumna,wybrana_kolumna);     $("#left").attr('class',klasy);
+	var klasy = $("#content").attr('class').replace(aktualna_kolumna,wybrana_kolumna);  $("#content").attr('class',klasy);
+	var klasy = $("#right").attr('class').replace(aktualna_kolumna,wybrana_kolumna);    $("#right").attr('class',klasy);
+	
+	
+	aktualna_kolumna = wybrana_kolumna;
+	return;
+	
+	var aktualne = $("div[class*='"+aktualna_kolumna+"']");
+	aktualne.each(function(){
+		console.log(this);
+		var klasa = $(this).attr('class');//className();//match('/md(.*?)/');
+		console.log(klasa);
+	});
+	
+	
+}
+
+
+
+function suwaki_RWD() {
 	var l = $('#suwak-cols-left').val();
 	var p = 6-$('#suwak-cols-right').val();
 	var c = 12-l-p;
 	var patern=l+'-'+c+'-'+p;
 	console.log(patern);
 	layout_grid(patern);
+	$('#text-cols-left').val(l);
+	$('#text-cols-right').val(p);
 }
 
 function wybierzFont(font){

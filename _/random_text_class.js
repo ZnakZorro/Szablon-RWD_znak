@@ -1,10 +1,11 @@
 function JakisLosowanyTekst(){
 
-	this.samogloski =   ['a', 'e', 'i', 'o', 'u'];
-	this.spolgloski =   ['z','n','r','w','s','t','c','y','k','d','p','m','u','j','l','ł','b','g','h','f','ę','ą','ó','ż','ś','ć','ń','ź','ch','cz','dz','rz','sz','dż','dź','ob'];
-	this.spojniki = ['a', 'i', 'w', 'u', 'z', 'o', 'na', 'się'];
-	this.img_colors = ['sky','vine','lava','gray','industrial','social'];
-	this.img_class = ['img-rounded','img-circle','img-thumbnail'];
+	this.sylaby =       ['ga', 'de', 'ry', 'po', 'lu', 'ki','ma','to', 'za', 'po', 'na', 'ta', 'mi', 'tę','tą' ,'ło' ,'ni' ,'zi' ,'żo' ,'ża' ,'li' ,'pi', 'pa' ,'zy','chi','czy','dzo','rze','sza','dżi','dźo','obi'];
+	this.samogloski =   ['a', 'e', 'y', 'o', 'u', 'i'];
+	this.spolgloski =   ['z','n', 'r','w','s','t','c','k','d','p','m','u','j','l','ł','b','g','h','f','ę','ą','ó','ż','ś','ć','ń','ź','ch','cz','dz','rz','sz','dż','dź','ob'];
+	this.spojniki =     ['a', 'i', 'w', 'u', 'z', 'o', 'na', 'się', 'oraz', 'lub', 'albo', 'zamiast', 'to'];
+	this.img_colors =   ['sky','vine','lava','gray','industrial','social'];
+	this.img_class =    ['img-rounded','img-circle','img-thumbnail'];
 	
 		this.losuj = function(l){
 			return Math.round(Math.random() * Math.random() * l);
@@ -15,6 +16,28 @@ function JakisLosowanyTekst(){
 			var align = (Math.random() > 0.5) ? 'left' : 'right';
 			return '<img data-src="holder.js/'+wymiar+'x'+wymiar+'/'+this.img_colors[Math.floor(Math.random()* this.img_colors.length)]+'" class="'+this.img_class[Math.floor(Math.random()* this.img_class.length)]+'" style="margin:8px; float:'+align+'; " alt="img">';
 		}
+		
+		
+		///////////
+		this.shuffle = function(o){ //v1.0
+			for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+			return o;
+		}
+		
+		this.jakiesSlowo_ = function(){
+			var len = Math.floor(Math.random()*Math.random()*7)+2;
+			this.sylaby = this.shuffle(this.sylaby);
+			//console.log(this.sylaby)
+			var word = '';
+			var j = this.sylaby.length;
+			for (var i = 0; i < len; i++) {
+				//word += this.sylaby[Math.round(Math.random()*(this.sylaby.length-1))];
+				word += this.sylaby[i % j];
+			}
+		return word;
+		}
+		//////////////
+		
 		
 		this.jakiesSlowo = function(){
 			var len = Math.round(Math.random()*8)+2;
@@ -35,10 +58,10 @@ function JakisLosowanyTekst(){
 
 		this.jakiesZdanie = function(){
 			var len = Math.round(Math.random()*10)+5;
-			var zdanie =this.jakiesSlowo();
+			var zdanie =this.jakiesSlowo_();
 			zdanie = zdanie.charAt(0).toUpperCase() + zdanie.slice(1);
 			for (var i=0; i<len; i++){
-				zdanie += ' '+ this.jakiesSlowo();
+				zdanie += ' '+ this.jakiesSlowo_();
 				if (i % 3 == 2 && i<len-1) zdanie += ' '+ this.spojniki[Math.round(Math.random()*(this.spojniki.length-1))];
 			}
 			return zdanie+'. ';
