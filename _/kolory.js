@@ -139,8 +139,6 @@ function suwaki_typ_kolumny(){
 	
 }
 
-
-
 function suwaki_RWD() {
 	var l = $('#suwak-cols-left').val();
 	var p = 6-$('#suwak-cols-right').val();
@@ -155,6 +153,15 @@ function suwaki_RWD() {
 function wybierzFont(font){
 	if (typeof(font) == 'string') $(document.body).css('font-family',font);
 	if (typeof(font) == 'number') $(document.body).css('font-size',font+'px');
+}
+
+
+
+
+function confinONOFF(){
+	if ($('.klawisze').css('display') == 'none') $('.klawisze').css('opacity','0') ;
+	$('.klawisze').toggle().animate({opacity: "1"}, 2000);
+
 }
 
 

@@ -5,7 +5,7 @@
 .col-sm-0 {display:none;}
 .navbar {margin-bottom: 5px;}
 .pull-center {margin:0 auto;}
-.klawisze { margin:15px 0px;}
+.klawisze { margin:15px 0px; display:none; opacity:0.1;}
 .klawisze input[type="range"] {display:inline; max-width:80%; vertical-align: bottom; margin:0 3%;}
 .klawisze input[type="text"] {display:inline; max-width:10%; text-align:center;}
 
